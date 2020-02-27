@@ -1,6 +1,4 @@
 import React from "react";
-import Container from "../components/Container";
-import Navbar from "../components/Navbar";
 import Heroe from "../components/Heroe";
 import BadgeContainer from "../components/BadgeContainer";
 import Badge from "../components/Badge";
@@ -36,21 +34,18 @@ class BadgeNew extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Container>
-          <Navbar />
-          <Heroe />
-          <BadgeContainer
-            Badge={<Badge {...this.state.form} />}
-            Form={
-              <BadgeForm
-                onChange={this.handleChange}
-                handleClick={this.handleClick}
-                handleSubmit={this.handleSubmit}
-                {...this.state.form}
-              />
-            }
-          />
-        </Container>
+        <Heroe />
+        <BadgeContainer
+          Badge={<Badge {...this.state.form} />}
+          Form={
+            <BadgeForm
+              onChange={this.handleChange}
+              handleClick={this.handleClick}
+              handleSubmit={this.handleSubmit}
+              {...this.state.form}
+            />
+          }
+        />
       </React.Fragment>
     );
   }

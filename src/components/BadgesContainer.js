@@ -1,14 +1,15 @@
 import React from "react";
 import "./styles/Badges.css";
 import BadgesList from "./BadgesList";
+import { Link } from "react-router-dom";
 
 const BadgesContainer = props => {
   return (
     <div className="Badges__container">
       <div className="Badges__buttons">
-        <a className="btn btn-primary" href="/badges/new">
+        <Link className="btn btn-primary" to="/badges/new">
           New Badges
-        </a>
+        </Link>
       </div>
 
       <div className="Badges_list">

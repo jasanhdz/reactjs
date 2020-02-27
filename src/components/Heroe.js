@@ -5,7 +5,7 @@ import header from "../images/badge-header.svg";
 const Heroe = () => {
   return (
     <div className="BadgeNew__hero">
-      <img className="img-fluid" src={header} alt="Logo"></img>
+      <img width="300px" className="img-fluid" src={header} alt="Logo"></img>
     </div>
   );
 };

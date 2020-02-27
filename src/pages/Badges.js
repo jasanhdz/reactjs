@@ -1,6 +1,4 @@
 import React from "react";
-import Container from "../components/Container";
-import Navbar from "../components/Navbar";
 import BadgesHero from "../components/BadgesHero";
 import BadgesContainer from "../components/BadgesContainer";
 
@@ -42,11 +40,8 @@ class Badges extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Container>
-          <Navbar />
-          <BadgesHero />
-          <BadgesContainer data={this.state.data} />
-        </Container>
+        <BadgesHero />
+        <BadgesContainer data={this.state.data} />
       </React.Fragment>
     );
   }
