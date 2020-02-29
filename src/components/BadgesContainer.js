@@ -11,7 +11,14 @@ const BadgesContainer = props => {
           New Badges
         </Link>
       </div>
-
+      {props.data.length === 0 && (
+        <div>
+          <h3>No badges were found</h3>
+          <Link className="btn btn-primary" to="/badges/new">
+            Create new Badge
+          </Link>
+        </div>
+      )}
       <div className="Badges_list">
         <div className="Badges__container">
           <ul className="list-unstyled">
