@@ -3,7 +3,7 @@ import React from "react";
 const BadgeForm = props => {
   return (
     <div>
-      <h1>New Attendant</h1>
+      <h1>{props.title}</h1>
       <form onSubmit={props.handleSubmit}>
         <div className="form-group">
           <label>First Name</label>
@@ -13,6 +13,7 @@ const BadgeForm = props => {
             name="firstName"
             onChange={props.onChange}
             value={props.firstName}
+            required
           ></input>
         </div>
         <div className="form-group">
@@ -23,6 +24,7 @@ const BadgeForm = props => {
             name="lastName"
             onChange={props.onChange}
             value={props.lastName}
+            required
           ></input>
         </div>
         <div className="form-group">
@@ -33,6 +35,7 @@ const BadgeForm = props => {
             name="email"
             onChange={props.onChange}
             value={props.email}
+            required
           ></input>
         </div>
         <div className="form-group">
@@ -43,6 +46,7 @@ const BadgeForm = props => {
             name="jobTitle"
             onChange={props.onChange}
             value={props.jobTitle}
+            required
           ></input>
         </div>
         <div className="form-group">
@@ -53,12 +57,15 @@ const BadgeForm = props => {
             name="twitter"
             onChange={props.onChange}
             value={props.twitter}
+            required
           ></input>
         </div>
 
         <button onClick={props.handleClick} className="btn btn-primary">
           Save
         </button>
+
+        {props.error && <p className="text-danger">{props.error.message}</p>}
       </form>
     </div>
   );

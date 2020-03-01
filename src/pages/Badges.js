@@ -4,38 +4,35 @@ import BadgesContainer from "../components/BadgesContainer";
 import PageLoading from "../components/PageLoading";
 import api from "../api";
 
-let initiaState = {
-  loading: true,
-  error: null,
-  data: undefined
-};
-
-const fetchData = async setState => {
-  setState({ ...initiaState, loading: true, error: null });
-  try {
-    const data = await api.badges.list();
-    setState({ loading: false, data: data, error: null });
-  } catch (error) {
-    setState({ ...initiaState, loading: false, error: error });
-  }
-};
-
-const Mountend = setState => {
-  const timeoutRef = useRef();
-  useEffect(() => {
-    console.log("3. ComponentDidMount()");
-    fetchData(setState);
-    return () => {
-      console.log("4. componentdDidUnMount()");
-      clearTimeout(timeoutRef.current);
-    };
-  }, []);
-};
-
 const Badges = () => {
   console.log("1. Constructor()");
-  const [state, setState] = useState({ ...initiaState });
-  Mountend(setState);
+  const [state, setState] = useState({
+    loading: true,
+    error: null,
+    data: undefined
+  });
+
+  useEffect(() => {
+    console.log("3. ComponentDidMount()");
+    fetchData();
+
+    const intervalId = setInterval(fetchData(), 5000);
+
+    return () => {
+      console.log("4. componentdDidUnMount()");
+      clearTimeout(intervalId);
+    };
+  }, []);
+
+  const fetchData = async () => {
+    setState({ error: null, data: [] });
+    try {
+      const data = await api.badges.list();
+      setState({ loading: false, data: data, error: null });
+    } catch (error) {
+      setState({ loading: false, error: error });
+    }
+  };
 
   if (state.loading) {
     console.log(state.loading);

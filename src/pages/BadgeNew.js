@@ -10,6 +10,7 @@ import PageLoading from "../components/PageLoading";
 class BadgeNew extends React.Component {
   state = {
     loading: false,
+    error: null,
     form: {
       firstName: "",
       lastName: "",
@@ -39,13 +40,29 @@ class BadgeNew extends React.Component {
       }
     });
   };
+
+  checkForm = () => {
+    if (
+      this.state.form.firstName === "" ||
+      this.state.form.lastName === "" ||
+      this.state.form.email === "" ||
+      this.state.form.jobTitle === "" ||
+      this.state.form.twitter === ""
+    ) {
+      throw new Error("Los campos no pueden ir vacios");
+    }
+  };
+
   handleSubmit = async e => {
     e.preventDefault();
     console.log(this.state.form);
     this.setState({ loading: true, error: null });
     try {
+      // this.checkForm();
       await api.badges.create(this.state.form);
       this.setState({ loading: false });
+
+      this.props.history.push("/badges");
     } catch (error) {
       this.setState({ loading: false, error: error });
     }
@@ -61,10 +78,12 @@ class BadgeNew extends React.Component {
           Badge={<Badge {...this.state.form} />}
           Form={
             <BadgeForm
+              title="New Attendant"
               onChange={this.handleChange}
               handleClick={this.handleClick}
               handleSubmit={this.handleSubmit}
               {...this.state.form}
+              error={this.state.error}
             />
           }
         />
