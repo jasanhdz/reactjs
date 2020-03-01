@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles/BadgeNew.css";
-import header from "../images/badge-header.svg";
+import header from "../images/platziconf-logo.svg";
 
 const Heroe = () => {
   return (

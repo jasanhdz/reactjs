@@ -3,9 +3,13 @@ import Heroe from "../components/Heroe";
 import BadgeContainer from "../components/BadgeContainer";
 import Badge from "../components/Badge";
 import BadgeForm from "../components/BadgeForm";
+import api from "../api";
+import md5 from "md5";
+import PageLoading from "../components/PageLoading";
 
 class BadgeNew extends React.Component {
   state = {
+    loading: false,
     form: {
       firstName: "",
       lastName: "",
@@ -26,12 +30,30 @@ class BadgeNew extends React.Component {
   };
   handleClick = e => {
     console.log("Button was click");
+    const hash = md5(this.state.form.email);
+    const avatarUrl = `https://www.gravatar.com/avatar/${hash}?d=identicon`;
+    this.setState({
+      form: {
+        ...this.state.form,
+        avatarUrl: avatarUrl
+      }
+    });
   };
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
     console.log(this.state.form);
+    this.setState({ loading: true, error: null });
+    try {
+      await api.badges.create(this.state.form);
+      this.setState({ loading: false });
+    } catch (error) {
+      this.setState({ loading: false, error: error });
+    }
   };
   render() {
+    if (this.state.loading) {
+      return <PageLoading />;
+    }
     return (
       <React.Fragment>
         <Heroe />

@@ -25,11 +25,13 @@
 .Card__twitter {
   font-size: 0.9em;
   color: rgb(29, 161, 242);
-}
-
-.Card__twitter {
   display: inline-block;
 }
+
+.Card__twitter a {
+  cursor: pointer;
+}
+
 .Card__twitterLogo {
   width: 32px;
   height: 32px;
