@@ -4,38 +4,30 @@ import BadgesContainer from "../components/BadgesContainer";
 import PageLoading from "../components/PageLoading";
 import api from "../api";
 
-const Badges = () => {
+const Badges = props => {
   console.log("1. Constructor()");
-  const [state, setState] = useState({
-    loading: true,
-    error: null,
-    data: undefined
-  });
-
-  useEffect(() => {
-    console.log("3. ComponentDidMount()");
-    fetchData();
-
-    const intervalId = setInterval(fetchData(), 5000);
-
-    return () => {
-      console.log("4. componentdDidUnMount()");
-      clearTimeout(intervalId);
-    };
-  }, []);
+  const [stateData, setStateData] = useState({ data: undefined });
+  const [state, setState] = useState({ loading: true, error: null });
 
   const fetchData = async () => {
-    setState({ error: null, data: [] });
+    setState({ loading: true, error: null });
     try {
       const data = await api.badges.list();
-      setState({ loading: false, data: data, error: null });
+      setStateData({ data: data });
     } catch (error) {
       setState({ loading: false, error: error });
     }
   };
 
-  if (state.loading) {
-    console.log(state.loading);
+  useEffect(() => {
+    // console.log("3. ComponentDidMount()");
+    fetchData();
+    let intervalId = setInterval(fetchData, 5000);
+    // return () => clearInterval(intervalId);
+  }, []);
+
+  console.log(state);
+  if (state.loading === true && !stateData.data) {
     return <PageLoading />;
   }
 
@@ -43,11 +35,10 @@ const Badges = () => {
     return `Error: ${state.error.message}`;
   }
 
-  console.log("2. Render()");
   return (
     <React.Fragment>
       <BadgesHero />
-      <BadgesContainer data={state.data} />
+      <BadgesContainer data={stateData.data} />
     </React.Fragment>
   );
 };
