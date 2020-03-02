@@ -3,8 +3,10 @@ import Badge from "../../components/Badge";
 import { Link } from "react-router-dom";
 import confLogo from "../../images/platziconf-logo.svg";
 import "../../components/styles/BadgeDetails.css";
+import Modal from "../../components/Modal";
 
 const BadgeDetails = props => {
+  const badge = props.badge;
   return (
     <React.Fragment>
       <div className="BadgeDetails__hero">
@@ -15,7 +17,7 @@ const BadgeDetails = props => {
             </div>
             <div className="col-6 BadgeDetails__hero-attendant-name">
               <h1>
-                {props.firstName || "Jasan"} {props.lastName || "Hernández"}
+                {badge.firstName || "Jasan"} {badge.lastName || "Hernández"}
               </h1>
             </div>
           </div>
@@ -26,12 +28,12 @@ const BadgeDetails = props => {
         <div className="row">
           <div className="col">
             <Badge
-              id={props.id}
-              firstName={props.firstName}
-              lastName={props.lastName}
-              email={props.email}
-              jobTitle={props.jobTitle}
-              twitter={props.twitter}
+              id={badge.id}
+              firstName={badge.firstName}
+              lastName={badge.lastName}
+              email={badge.email}
+              jobTitle={badge.jobTitle}
+              twitter={badge.twitter}
             />
           </div>
           <div className="col">
@@ -40,16 +42,25 @@ const BadgeDetails = props => {
               <div>
                 <Link
                   className="btn btn-primary mb-4"
-                  to={`/badges/${props.id}/edit`}
+                  to={`/badges/${badge.id}/edit`}
                 >
                   Edit
                 </Link>
               </div>
 
               <div>
-                <button type="button" className="btn btn-danger">
+                <button
+                  onClick={props.handleClick}
+                  type="button"
+                  className="btn btn-danger"
+                >
                   Delete
                 </button>
+                {props.modalIsVisibility && (
+                  <Modal onClose={props.handleClick}>
+                    <p>lorem Isup</p>
+                  </Modal>
+                )}
               </div>
             </div>
           </div>

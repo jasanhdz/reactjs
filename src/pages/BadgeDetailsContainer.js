@@ -6,6 +6,15 @@ import BadgeDetails from "./components/BadgeDetails";
 const BadgeDetailsContainer = props => {
   const [dataState, setDataState] = useState({ data: undefined });
   const [state, setState] = useState({ loading: true, error: null });
+  const [modal, setModal] = useState({ isVisibility: false });
+
+  const handleClick = () => {
+    if (modal.isVisibility) {
+      setModal({ isVisibility: false });
+    } else {
+      setModal({ isVisibility: true });
+    }
+  };
 
   const fetchData = async () => {
     setState({ loading: true });
@@ -27,7 +36,7 @@ const BadgeDetailsContainer = props => {
     };
   }, []);
 
-  console.log(dataState);
+  // console.log(dataState);
   if (state.loading) {
     return <PageLoading />;
   }
@@ -38,12 +47,9 @@ const BadgeDetailsContainer = props => {
 
   return (
     <BadgeDetails
-      id={dataState.data.id}
-      firstName={dataState.data.firstName}
-      lastName={dataState.data.lastName}
-      email={dataState.data.email}
-      jobTitle={dataState.data.jobTitle}
-      twitter={dataState.data.twitter}
+      modalIsVisibility={modal.isVisibility}
+      handleClick={handleClick}
+      badge={dataState.data}
     />
   );
 };
