@@ -16,6 +16,18 @@ const BadgeDetailsContainer = props => {
     }
   };
 
+  const handleDelete = async () => {
+    setState({ loading: true, error: null });
+    console.log(`Delete badge with id: ${props.match.params.badgeId}`);
+    try {
+      await api.badges.remove(props.match.params.badgeId);
+
+      props.history.push("/badges");
+    } catch (error) {
+      setState({ loading: false, error: error });
+    }
+  };
+
   const fetchData = async () => {
     setState({ loading: true });
     try {
@@ -50,6 +62,7 @@ const BadgeDetailsContainer = props => {
       modalIsVisibility={modal.isVisibility}
       handleClick={handleClick}
       badge={dataState.data}
+      deleteBadge={handleDelete}
     />
   );
 };

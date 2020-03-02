@@ -1,10 +1,33 @@
-import React from "react";
+import React, { useState, useMemo } from "react";
 import "./styles/Badges.css";
 import BadgesList from "./BadgesList";
 import { Link } from "react-router-dom";
 import MiniLoader from "./miniLoader";
 
+const useSearchBadges = badges => {
+  const [query, setQuery] = useState("");
+  const [filteredBadges, setFilterBadges] = useState(badges);
+
+  useMemo(() => {
+    const result = badges.filter(badge => {
+      return `${badge.firstName} ${badge.lastName}`
+        .toLowerCase()
+        .includes(query.toLowerCase());
+    });
+
+    setFilterBadges(result);
+  }, [query, badges, query]);
+
+  return { setQuery, filteredBadges };
+};
+
 const BadgesContainer = props => {
+  const badges = props.data;
+  const { query, setQuery, filteredBadges } = useSearchBadges(badges);
+
+  const handleChange = e => {
+    setQuery(e.target.value);
+  };
   return (
     <div className="Badges__container">
       <div className="Badges__buttons">
@@ -12,18 +35,36 @@ const BadgesContainer = props => {
           New Badges
         </Link>
       </div>
-      {props.data.length === 0 && (
+      {filteredBadges.length === 0 && (
         <div>
           <h3>No badges were found</h3>
+          {/* <div className="form-group">
+            <label>Filter Badges</label>
+            <input
+              type="text"
+              className="form-control"
+              value={query}
+              onChange={handleChange}
+            />
+          </div> */}
           <Link className="btn btn-primary" to="/badges/new">
             Create new Badge
           </Link>
         </div>
       )}
       <div className="Badges_list">
+        <div className="form-group">
+          <label>Filter Badges</label>
+          <input
+            type="text"
+            className="form-control"
+            value={query}
+            onChange={handleChange}
+          />
+        </div>
         <div className="Badges__container">
           <ul className="list-unstyled">
-            {props.data.map(data => {
+            {filteredBadges.map(data => {
               return <BadgesList key={data.id} {...data} />;
             })}
           </ul>

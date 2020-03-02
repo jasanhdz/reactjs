@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import Badge from "../../components/Badge";
 import { Link } from "react-router-dom";
 import confLogo from "../../images/platziconf-logo.svg";
 import "../../components/styles/BadgeDetails.css";
-import Modal from "../../components/Modal";
+import DeleteBadgeModal from "../../components/DeleteBadgeModal";
+
+const useIncreseCounter = max => {
+  const [count, setCount] = React.useState(0);
+
+  if (count > max) {
+    setCount(0);
+  }
+
+  return [count, setCount];
+};
 
 const BadgeDetails = props => {
+  const [count, setCount] = useIncreseCounter(4);
   const badge = props.badge;
   return (
     <React.Fragment>
@@ -40,6 +51,12 @@ const BadgeDetails = props => {
             <h2>Actions</h2>
             <div>
               <div>
+                <button
+                  onClick={() => setCount(count + 1)}
+                  className="btn btn-primary mr-4"
+                >
+                  Increase Count {count}
+                </button>
                 <Link
                   className="btn btn-primary mb-4"
                   to={`/badges/${badge.id}/edit`}
@@ -57,9 +74,10 @@ const BadgeDetails = props => {
                   Delete
                 </button>
                 {props.modalIsVisibility && (
-                  <Modal onClose={props.handleClick}>
-                    <p>lorem Isup</p>
-                  </Modal>
+                  <DeleteBadgeModal
+                    onDeleteBadge={props.deleteBadge}
+                    onClose={props.handleClick}
+                  />
                 )}
               </div>
             </div>
