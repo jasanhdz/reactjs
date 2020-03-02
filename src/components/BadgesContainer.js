@@ -2,6 +2,7 @@ import React from "react";
 import "./styles/Badges.css";
 import BadgesList from "./BadgesList";
 import { Link } from "react-router-dom";
+import MiniLoader from "./miniLoader";
 
 const BadgesContainer = props => {
   return (
@@ -26,6 +27,7 @@ const BadgesContainer = props => {
               return <BadgesList key={data.id} {...data} />;
             })}
           </ul>
+          {props.loading === true && <MiniLoader />}
         </div>
       </div>
     </div>

@@ -5,7 +5,7 @@ import PageLoading from "../components/PageLoading";
 import api from "../api";
 
 const Badges = props => {
-  console.log("1. Constructor()");
+  // console.log("1. Constructor()");
   const [stateData, setStateData] = useState({ data: undefined });
   const [state, setState] = useState({ loading: true, error: null });
 
@@ -14,6 +14,7 @@ const Badges = props => {
     try {
       const data = await api.badges.list();
       setStateData({ data: data });
+      setState({ loading: false, error: null });
     } catch (error) {
       setState({ loading: false, error: error });
     }
@@ -23,10 +24,10 @@ const Badges = props => {
     // console.log("3. ComponentDidMount()");
     fetchData();
     let intervalId = setInterval(fetchData, 5000);
-    // return () => clearInterval(intervalId);
+    return () => clearInterval(intervalId);
   }, []);
 
-  console.log(state);
+  // console.log(state);
   if (state.loading === true && !stateData.data) {
     return <PageLoading />;
   }
@@ -38,7 +39,7 @@ const Badges = props => {
   return (
     <React.Fragment>
       <BadgesHero />
-      <BadgesContainer data={stateData.data} />
+      <BadgesContainer loading={state.loading} data={stateData.data} />
     </React.Fragment>
   );
 };

@@ -7,7 +7,7 @@ const BadgesList = props => {
   return (
     <Link
       className="text-reset text-decoration-none"
-      to={`/badges/${props.id}/edit`}
+      to={`/badges/${props.id}`}
     >
       <div className="Card__container">
         <div className="Card__img">
