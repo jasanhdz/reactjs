@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/reactjs/static/css/main.c896e228.chunk.css",
+    "main.js": "/reactjs/static/js/main.72eef814.chunk.js",
+    "main.js.map": "/reactjs/static/js/main.72eef814.chunk.js.map",
+    "runtime-main.js": "/reactjs/static/js/runtime-main.fbd115ba.js",
+    "runtime-main.js.map": "/reactjs/static/js/runtime-main.fbd115ba.js.map",
+    "static/css/2.67123b20.chunk.css": "/reactjs/static/css/2.67123b20.chunk.css",
+    "static/js/2.0b29d466.chunk.js": "/reactjs/static/js/2.0b29d466.chunk.js",
+    "static/js/2.0b29d466.chunk.js.map": "/reactjs/static/js/2.0b29d466.chunk.js.map",
+    "index.html": "/reactjs/index.html",
+    "precache-manifest.bf9d12274fe55e8ecf395d26ec80e878.js": "/reactjs/precache-manifest.bf9d12274fe55e8ecf395d26ec80e878.js",
+    "service-worker.js": "/reactjs/service-worker.js",
+    "static/css/2.67123b20.chunk.css.map": "/reactjs/static/css/2.67123b20.chunk.css.map",
+    "static/css/main.c896e228.chunk.css.map": "/reactjs/static/css/main.c896e228.chunk.css.map",
+    "static/js/2.0b29d466.chunk.js.LICENSE.txt": "/reactjs/static/js/2.0b29d466.chunk.js.LICENSE.txt",
+    "static/media/astronaut.png": "/reactjs/static/media/astronaut.cf1c0d9d.png",
+    "static/media/astronauts.svg": "/reactjs/static/media/astronauts.0d2ff286.svg",
+    "static/media/badge-header.svg": "/reactjs/static/media/badge-header.ed7c58ea.svg",
+    "static/media/logo.svg": "/reactjs/static/media/logo.6841730f.svg",
+    "static/media/platziconf-logo.svg": "/reactjs/static/media/platziconf-logo.a1880fbf.svg",
+    "static/media/BadgeDetails.css": "/reactjs/static/media/stars.0abcdfcd.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.fbd115ba.js",
+    "static/css/2.67123b20.chunk.css",
+    "static/js/2.0b29d466.chunk.js",
+    "static/css/main.c896e228.chunk.css",
+    "static/js/main.72eef814.chunk.js"
+  ]
+}
