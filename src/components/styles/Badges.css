@@ -28,3 +28,9 @@
   justify-content: flex-end;
   margin-bottom: 1rem;
 }
+
+@media screen and (max-width: 600px) {
+  .Badges__container {
+    padding: 3px;
+  }
+}

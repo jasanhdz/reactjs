@@ -22,11 +22,11 @@ const BadgeDetails = props => {
     <React.Fragment>
       <div className="BadgeDetails__hero">
         <div className="container">
-          <div className="row">
-            <div className="col-6">
+          <div className="row details">
+            <div className="col-6 item">
               <img src={confLogo} alt="Logo de la conferencia" />
             </div>
-            <div className="col-6 BadgeDetails__hero-attendant-name">
+            <div className="col-6 item BadgeDetails__hero-attendant-name">
               <h1>
                 {badge.firstName || "Jasan"} {badge.lastName || "Hernández"}
               </h1>

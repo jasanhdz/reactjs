@@ -42,3 +42,9 @@
   font-weight: bold;
   font-size: 0.9em;
 }
+
+@media screen and (max-width: 600px) {
+  .Card__container {
+    width: 100%;
+  }
+}

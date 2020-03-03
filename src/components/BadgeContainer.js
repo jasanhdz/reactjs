@@ -4,8 +4,8 @@ const BadgeContainer = props => {
   return (
     <div className="container">
       <div className="row">
-        <div className="col-6">{props.Badge}</div>
-        <div className="col-6">{props.Form}</div>
+        <div className="col-6 item">{props.Badge}</div>
+        <div className="col-6 item">{props.Form}</div>
       </div>
     </div>
   );
