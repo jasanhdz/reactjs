@@ -5,6 +5,7 @@ import confLogo from "../../images/platziconf-logo.svg";
 import "../../components/styles/BadgeDetails.css";
 import DeleteBadgeModal from "../../components/DeleteBadgeModal";
 
+require("dotenv").config();
 const useIncreseCounter = max => {
   const [count, setCount] = React.useState(0);
 
@@ -59,7 +60,7 @@ const BadgeDetails = props => {
                 </button>
                 <Link
                   className="btn btn-primary mb-4"
-                  to={`/badges/${badge.id}/edit`}
+                  to={process.env.PUBLIC_URL + `/badges/${badge.id}/edit`}
                 >
                   Edit
                 </Link>

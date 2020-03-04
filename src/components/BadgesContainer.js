@@ -3,7 +3,7 @@ import "./styles/Badges.css";
 import BadgesList from "./BadgesList";
 import { Link } from "react-router-dom";
 import MiniLoader from "./miniLoader";
-
+require("dotenv").config();
 const useSearchBadges = badges => {
   const [query, setQuery] = useState("");
   const [filteredBadges, setFilterBadges] = useState(badges);
@@ -31,7 +31,10 @@ const BadgesContainer = props => {
   return (
     <div className="Badges__container">
       <div className="Badges__buttons">
-        <Link className="btn btn-primary" to="/badges/new">
+        <Link
+          className="btn btn-primary"
+          to={process.env.PUBLIC_URL + "/badges/new"}
+        >
           New Badges
         </Link>
       </div>
@@ -47,7 +50,10 @@ const BadgesContainer = props => {
               onChange={handleChange}
             />
           </div> */}
-          <Link className="btn btn-primary" to="/badges/new">
+          <Link
+            className="btn btn-primary"
+            to={process.env.PUBLIC_URL + "/badges/new"}
+          >
             Create new Badge
           </Link>
         </div>
@@ -65,7 +71,7 @@ const BadgesContainer = props => {
         <div className="Badges__container">
           <ul className="list-unstyled">
             {filteredBadges.map(data => {
-              return <BadgesList key={data.id} {...data} />;
+              return <BadgesList key={data._id} {...data} />;
             })}
           </ul>
           {props.loading === true && <MiniLoader />}

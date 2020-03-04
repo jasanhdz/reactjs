@@ -1,4 +1,5 @@
-const BASE_URL = "http://localhost:3001";
+// const BASE_URL = "http://localhost:3001";
+const BASE_URL = "https://platzibadge-api.now.sh/api";
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 const randomNumber = (min = 0, max = 1) =>
@@ -17,8 +18,11 @@ async function callApi(endpoint, options = {}) {
   const url = BASE_URL + endpoint;
   const response = await fetch(url, options);
   const data = await response.json();
+  console.log("La data viene en seguida");
+  console.log(data.data);
 
-  return data;
+  return data.data;
+  // return }
 }
 
 const api = {

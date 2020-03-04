@@ -6,7 +6,7 @@ import BadgeForm from "../components/BadgeForm";
 import api from "../api";
 import md5 from "md5";
 import PageLoading from "../components/PageLoading";
-
+require("dotenv").config();
 class BadgeNew extends React.Component {
   state = {
     loading: false,
@@ -62,7 +62,7 @@ class BadgeNew extends React.Component {
       await api.badges.create(this.state.form);
       this.setState({ loading: false });
 
-      this.props.history.push("/badges");
+      this.props.history.push(process.env.PUBLIC_URL + "/badges");
     } catch (error) {
       this.setState({ loading: false, error: error });
     }

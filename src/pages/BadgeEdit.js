@@ -6,7 +6,7 @@ import BadgeContainer from "../components/BadgeContainer";
 import Badge from "../components/Badge";
 import BadgeForm from "../components/BadgeForm";
 import PageLoading from "../components/PageLoading";
-
+require("dotenv").config();
 const BadgeEdit = props => {
   const [state, setState] = useState({
     loading: false,
@@ -69,7 +69,7 @@ const BadgeEdit = props => {
       await api.badges.update(props.match.params.badgeId, state.form);
       setState({ loading: false });
 
-      props.history.push("/badges");
+      props.history.push(process.env.PUBLIC_URL + "/badges");
     } catch (error) {
       setState({ loading: false, error: error });
     }

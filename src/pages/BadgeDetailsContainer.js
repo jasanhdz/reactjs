@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import api from "../api";
 import PageLoading from "../components/PageLoading";
 import BadgeDetails from "./components/BadgeDetails";
-
+require("dotenv").config();
 const BadgeDetailsContainer = props => {
   const [dataState, setDataState] = useState({ data: undefined });
   const [state, setState] = useState({ loading: true, error: null });
@@ -22,7 +22,7 @@ const BadgeDetailsContainer = props => {
     try {
       await api.badges.remove(props.match.params.badgeId);
 
-      props.history.push("/badges");
+      props.history.push(process.env.PUBLIC_URL + "/badges");
     } catch (error) {
       setState({ loading: false, error: error });
     }
